@@ -1,5 +1,6 @@
-import { Grid, Typography } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import { useExchangeRates } from '../../../../hooks';
+import ConvertedValue from '../ConvertedValue';
 import { useStyles } from './styles';
 
 type Props = {
@@ -17,9 +18,7 @@ const BoardTable = (props: Props) => {
 		<Grid container className={classes.currencyList}>
 			{exchangeInfo.map((item) => (
 				<Grid container key={item.currency}>
-					<Typography variant='h5' className={classes.currencyTitle}>
-						1 {props.baseCurrency} = {item.rate} {item.currency}
-					</Typography>
+					<ConvertedValue convertedValue={item.rate} convertedCurrency={item.currency} baseCurrency={props.baseCurrency} />
 				</Grid>
 			))}
 		</Grid>

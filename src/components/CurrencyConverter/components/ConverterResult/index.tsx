@@ -20,7 +20,7 @@ const ConverterResult = (props: Props) => {
 
 	return (
 		<Typography variant='body1' className={classes.root}>
-			{props.incorrectFormat ? 'Incorrect input format, please enter like in example: 10 usd in rur' : `Result: ${exchangeResult} `}
+			{props.incorrectFormat ? 'Incorrect input format, please enter like in example: 10 usd in ua' : `Result: ${exchangeResult} `}
 		</Typography>
 	);
 };

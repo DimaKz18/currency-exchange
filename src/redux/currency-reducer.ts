@@ -90,7 +90,7 @@ export const fetchCurrencyRate = () => {
 
 		const ua_to_usd = currencyRate && currencyRate.data.find((currency) => currency.ccy === 'USD')?.buy;
 		const ua_to_eur = currencyRate && currencyRate.data.find((currency) => currency.ccy === 'EUR')?.buy;
-		const ua_to_rur = currencyRate && currencyRate.data.find((currency) => currency.ccy === 'RUR')?.buy;
+		const ua_to_rur = currencyRate && (currencyRate.data.find((currency) => currency.ccy === 'RUR')?.buy || '0.02');
 
 		dispatch(actions.setCurrencyList(currencyList));
 		dispatch(actions.setCurrencyListLoading(false));

@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useMountEffect } from '../../hooks';
 import { fetchCurrencyRate } from '../../redux/currency-reducer';
 import { selectCurrencyList, selectCurrencyListLoading } from '../../redux/currency-selectors';
+import { UA_CODE } from '../../service/helpers';
 import { useAppSelector } from '../../store';
 import LoadingIndicator from '../common/LoadingIndicator';
 import BoardSelect from './components/BoardSelect';
@@ -11,7 +12,7 @@ import BoardTable from './components/BoardTable';
 import { useStyles } from './styles';
 
 const CurrencyBoard = () => {
-	const [baseCurrency, setBaseCurrency] = useState('RUR');
+	const [baseCurrency, setBaseCurrency] = useState(UA_CODE);
 
 	const classes = useStyles();
 	const dispatch = useDispatch();
