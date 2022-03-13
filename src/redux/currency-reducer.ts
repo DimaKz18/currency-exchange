@@ -1,12 +1,12 @@
 import { Dispatch } from 'redux';
 import { currencyAPI } from '../service';
+import { UA_CODE, USD_CODE, EUR_CODE, BTC_CODE } from '../service/helpers';
 import { ActionsTypes } from '../store';
 
 const initialState = {
 	currencyList: [''],
 	ua_to_usd: 0,
 	ua_to_eur: 0,
-	ua_to_rur: 0,
 	loadingCurrencyList: false,
 };
 
@@ -33,11 +33,6 @@ const currencyReducer = (state = initialState, action: ActionsType): InitialStat
 			return {
 				...state,
 				ua_to_eur: Number(action.data),
-			};
-		case 'CURRENCY/SET_UA_TO_RUR_RATE':
-			return {
-				...state,
-				ua_to_rur: Number(action.data),
 			};
 		default:
 			return state;
@@ -71,12 +66,6 @@ export const actions = {
 			data,
 		} as const;
 	},
-	setUaToRurRate: (data?: string) => {
-		return {
-			type: 'CURRENCY/SET_UA_TO_RUR_RATE',
-			data,
-		} as const;
-	},
 };
 
 type DispatchType = Dispatch<ActionsType>;
@@ -86,17 +75,15 @@ export const fetchCurrencyRate = () => {
 		dispatch(actions.setCurrencyListLoading(true));
 		const currencyRate = await currencyAPI.fetchCurrencyRateCall();
 
-		const currencyList = currencyRate && Object.entries(currencyRate.data).map(([key, value]) => (value.ccy !== 'BTC' ? value.ccy : 'UA'));
+		const currencyList = currencyRate && Object.entries(currencyRate.data).map(([key, value]) => (value.ccy !== BTC_CODE ? value.ccy : UA_CODE));
 
-		const ua_to_usd = currencyRate && currencyRate.data.find((currency) => currency.ccy === 'USD')?.buy;
-		const ua_to_eur = currencyRate && currencyRate.data.find((currency) => currency.ccy === 'EUR')?.buy;
-		const ua_to_rur = currencyRate && (currencyRate.data.find((currency) => currency.ccy === 'RUR')?.buy || '0.02');
+		const ua_to_usd = currencyRate && currencyRate.data.find((currency) => currency.ccy === USD_CODE)?.buy;
+		const ua_to_eur = currencyRate && currencyRate.data.find((currency) => currency.ccy === EUR_CODE)?.buy;
 
 		dispatch(actions.setCurrencyList(currencyList));
 		dispatch(actions.setCurrencyListLoading(false));
 		dispatch(actions.setUaToUsdRate(ua_to_usd));
 		dispatch(actions.setUaToEurRate(ua_to_eur));
-		dispatch(actions.setUaToRurRate(ua_to_rur));
 	};
 };
 

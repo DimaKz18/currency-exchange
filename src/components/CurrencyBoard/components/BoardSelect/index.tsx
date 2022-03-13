@@ -16,7 +16,9 @@ const BoardSelect = (props: Props) => {
 			<InputLabel id='demo-simple-select-label'>Base currency</InputLabel>
 			<Select labelId='demo-simple-select-label' id='demo-simple-select' value={props.baseCurrency} onChange={props.onHandleChange}>
 				{props.currencyList.map((currency) => (
-					<MenuItem value={currency}>{currency}</MenuItem>
+					<MenuItem value={currency} key={currency}>
+						{currency}
+					</MenuItem>
 				))}
 			</Select>
 		</FormControl>

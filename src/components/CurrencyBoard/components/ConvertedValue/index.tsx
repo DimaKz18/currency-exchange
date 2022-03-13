@@ -15,7 +15,7 @@ const ConvertedValue = (props: Props) => {
 
 	return (
 		<Typography variant='h5' className={classes.currencyTitle}>
-			1 {props.baseCurrency} = <animated.span className='string'>{resultValue.val.interpolate((val) => parseFloat(val.toFixed(2)))}</animated.span>{' '}
+			1 {props.baseCurrency} = <animated.span className='string'>{resultValue.val.interpolate((val) => parseFloat(val.toFixed(3)))}</animated.span>{' '}
 			{props.convertedCurrency}
 		</Typography>
 	);

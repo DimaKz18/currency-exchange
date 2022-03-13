@@ -2,5 +2,5 @@ export const currencyUrl = 'https://api.privatbank.ua/p24api/pubinfo?json&exchan
 
 export const USD_CODE = 'USD';
 export const EUR_CODE = 'EUR';
-export const RUR_CODE = 'RUR';
 export const UA_CODE = 'UA';
+export const BTC_CODE = 'BTC';
