@@ -3,8 +3,10 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { currencyBoard, currencyConverter } from '../../routes/routes';
 import { useStyles } from './styles';
 import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
 
 const NavBar = () => {
+	const { t } = useTranslation();
 	const classes = useStyles();
 	const location = useLocation();
 
@@ -14,10 +16,10 @@ const NavBar = () => {
 	return (
 		<Grid container justifyContent='center'>
 			<NavLink to='/board' className={boardLinkClass}>
-				Board
+				{t('board_tab')}
 			</NavLink>
 			<NavLink to='/converter' className={converterLinkClass}>
-				Converter
+				{t('converter_tab')}
 			</NavLink>
 		</Grid>
 	);

@@ -1,4 +1,5 @@
 import { Typography } from '@material-ui/core';
+import { useTranslation } from 'react-i18next';
 import { useExchangeRates } from '../../../../hooks';
 import { useStyles } from './styles';
 
@@ -11,6 +12,7 @@ type Props = {
 };
 
 const ConverterResult = (props: Props) => {
+	const { t } = useTranslation();
 	const classes = useStyles();
 
 	const exchangeInfo = useExchangeRates(props.fromCurrency, [props.toCurrency], props.currencyAmount);
@@ -20,7 +22,7 @@ const ConverterResult = (props: Props) => {
 
 	return (
 		<Typography variant='body1' className={classes.root}>
-			{props.incorrectFormat ? 'Incorrect input format, please enter like in example: 10 usd in ua' : `Result: ${exchangeResult} `}
+			{props.incorrectFormat ? t('incorrect_input_format') : `${t('correct_input_format')} ${exchangeResult}`}
 		</Typography>
 	);
 };
