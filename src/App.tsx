@@ -9,7 +9,6 @@ const App = () => {
 		<Provider store={store}>
 			<NavBar />
 			<Routes />
-			test
 		</Provider>
 	);
 };
